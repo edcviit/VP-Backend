@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { rateLimit } = require("express-rate-limit");
 const userRouter = require("./routes/user");
+const RegisterRouter = require("./routes/register");
 const authRouter = require("./routes/auth");
 const app = express();
 const limiter = rateLimit({
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(limiter);
 app.use("/user", userRouter);
 app.use("/auth", authRouter);
+app.use("/register", RegisterRouter);
 
 app.get("/", (req, res) => {
   res.send("Vishwapreneur'24 Backend");
