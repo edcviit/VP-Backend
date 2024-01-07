@@ -18,6 +18,15 @@ const verificationSchema = new mongoose.Schema({
   otp: String,
   expiresAt: Date,
 });
+const registrationSchema = new mongoose.Schema({
+  fullName: String,
+  phoneNumber: String,
+  email: String,
+  college: String,
+  city: String,
+});
+
+const Registration = mongoose.model("Registration", registrationSchema);
 
 const User = mongoose.model("User", userSchema);
 const Verification = mongoose.model("Verification", verificationSchema);
@@ -25,4 +34,5 @@ const Verification = mongoose.model("Verification", verificationSchema);
 module.exports = {
   User,
   Verification,
+  Registration,
 };
