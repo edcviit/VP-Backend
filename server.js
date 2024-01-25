@@ -6,6 +6,7 @@ const RegisterRouter = require("./routes/register");
 const authRouter = require("./routes/auth");
 const app = express();
 const limiter = rateLimit({
+  validate: {xForwardedForHeader: false},
   windowMs:  60 * 1000, // 1 minute
   limit: 10, // Limit each IP to 100 requests per minute.
   standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
@@ -14,7 +15,7 @@ const limiter = rateLimit({
 
 app.use(cors());
 app.use(express.json());
-app.use(limiter);
+// app.use(limiter);
 app.use("/user", userRouter);
 app.use("/auth", authRouter);
 app.use("/register", RegisterRouter);
